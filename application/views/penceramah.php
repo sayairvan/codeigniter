@@ -31,11 +31,15 @@
                 <td><?php echo $pcrmh->NAMA_PENCERAMAH ?></td>
                 <td><?php echo $pcrmh->NO_TELP ?></td>
                 <td><?php echo $pcrmh->ALAMAT_PENCERAMAH ?></td>
-                <td onclick="javasript: return confirm('Anda yakin Ingin menghapusnya?')"><?php echo anchor('penceramah/hapus' .$pcrmh->id , '<div class="btn btn-danger btn-sm"><i class ="fa fa-trash"></i></div>')?></td>
-                <td><div class="btn btn-primary btn-sm"><i class ="fa fa-edit"></i></div></td>
+                <td onclick="return confirm('Apakah Yakin Anda ingin menghapus?')">
+                <?php echo anchor('penceramah/hapus/'.$pcrmh->ID_PENCERAMAH, '<div class="btn btn-danger btn-sm"><i class ="fa fa-trash"></i></div>')?>
+                </td>
+                <td><div class="btn btn-primary btn-sm"><i class ='fa fa-edit'></i></div></td>
             </tr>
           <?php endforeach ?>
         </table>
+  
+        
     
     </section>
 
@@ -54,24 +58,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="<?php echo base_url().'penceramah/tambah_aksi';  //method tambah aksi u/penambah data didb ?>">
+        <form method="post" 
+        action="<?php echo base_url().'penceramah/tambah_aksi';  
+        //method tambah aksi u/penambah data didb ?>">
           
           <div class="form-group">
             <label >Nama Penceramah</label>
-            <input type="text" name="nama_penceramah" class="form-control">
-          </div>
+            <input type="text" name="nama_penceramah" class="form-control" required>
+          </div> 
         
           <div class="form-group">
             <label >No Telp</label>
-            <input type="text" name="no_telp" class="form-control">
+            <input type="text" name="no_telp" class="form-control" required>
           </div>
 
           <div class="form-group">
             <label >Alamat Penceramah</label>
-            <input type="text" name="alamat_penceramah" class="form-control">
+            <input type="text" name="alamat_penceramah" class="form-control" required>
           </div>
         
-        <button type="reset" class="btn btn-danger" data-dismiss="modal">Reset</button>
+        <button type="reset" class="btn btn-danger" >Reset</button>
         <button type="submit" class="btn btn-primary">Save</button>
         </form> 
       </div>

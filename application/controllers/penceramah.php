@@ -12,19 +12,19 @@
         public function tambah_aksi(){
             $nama_penceramah = $this->input->post('nama_penceramah');
             $no_telp = $this->input->post('no_telp');
-            $alamat_penceramah = $this->input->post('alamat_penceramah ');
+            $alamat_penceramah = $this->input->post('alamat_penceramah');
 
-            $data = array  (
+            $data = array(
                 'nama_penceramah' =>  $nama_penceramah,
                 'no_telp' =>  $no_telp,
                 'alamat_penceramah' =>  $alamat_penceramah
             );
 
-            $this->m_penceramah->input_data($data,'PENCERAMAH');
+            $this->m_penceramah->input_data($data,'penceramah');
             redirect('penceramah/index');
         }
-        public function hapus($id){
-            $where = array('id' => $id );
+        public function hapus($id_penceramah){
+            $where = array('ID_PENCERAMAH' => $id_penceramah );
 
             $this->m_penceramah->hapus_data($where,'PENCERAMAH');
             redirect('penceramah/index');
