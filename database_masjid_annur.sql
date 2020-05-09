@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2020 at 05:42 AM
+-- Generation Time: May 09, 2020 at 03:09 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -33,7 +33,6 @@ CREATE TABLE `acara` (
   `ID_ADMIN` int(11) DEFAULT NULL,
   `ID_PENCERAMAH` int(11) DEFAULT NULL,
   `ID_BILAL` int(11) DEFAULT NULL,
-  `ID_TEMPLATE` int(11) DEFAULT NULL,
   `JENIS_ACARA` varchar(100) DEFAULT NULL,
   `NAMA_ACARA` varchar(100) DEFAULT NULL,
   `TEMA_ACARA` varchar(255) DEFAULT NULL,
@@ -46,14 +45,19 @@ CREATE TABLE `acara` (
 -- Dumping data for table `acara`
 --
 
-INSERT INTO `acara` (`ID_ACARA`, `ID_ADMIN`, `ID_PENCERAMAH`, `ID_BILAL`, `ID_TEMPLATE`, `JENIS_ACARA`, `NAMA_ACARA`, `TEMA_ACARA`, `TGL_ACARA`, `PAMFLET_ACARA`, `VIDEO_ACARA`) VALUES
-(2, NULL, NULL, NULL, NULL, 'Hari Besar Islam', 'Maulid Nabi', 'membangun insan', '2020-01-20', NULL, NULL),
-(3, NULL, NULL, NULL, NULL, 'Kajian', 'Maulid Nabi Muhammad SAW', '', '2020-04-21', NULL, NULL),
-(4, NULL, NULL, NULL, NULL, 'Kajian', 'Coba', '', '2020-04-13', NULL, NULL),
-(5, NULL, 5, NULL, NULL, 'Kajian', 'Putri', '', '2020-04-13', NULL, NULL),
-(6, NULL, 6, NULL, NULL, 'Hari Besar Islam', 'Maulid Nabi', 'aaaaaaaaaa', '2020-04-13', NULL, NULL),
-(8, NULL, 6, 3, NULL, 'jumatan', 'Minggu 1', 'aaaaaaaaaa', '2020-04-13', NULL, NULL),
-(9, NULL, 6, NULL, NULL, 'Hari Besar Islam', 'Minggu 1', 'aaaaaaaaaa', '2020-04-16', NULL, NULL);
+INSERT INTO `acara` (`ID_ACARA`, `ID_ADMIN`, `ID_PENCERAMAH`, `ID_BILAL`, `JENIS_ACARA`, `NAMA_ACARA`, `TEMA_ACARA`, `TGL_ACARA`, `PAMFLET_ACARA`, `VIDEO_ACARA`) VALUES
+(2, NULL, NULL, NULL, 'Hari Besar Islam', 'Maulid Nabi', 'membangun insan', '2020-01-20', 'mamah-sum.jpg', 'mamah-sum.jpg'),
+(3, NULL, NULL, NULL, 'Kajian', 'Maulid Nabi Muhammad SAW', '', '2020-04-21', NULL, NULL),
+(4, NULL, NULL, NULL, 'Kajian', 'Coba', '', '2020-04-13', NULL, NULL),
+(5, NULL, 5, NULL, 'Kajian', 'Putri', '', '2020-04-13', NULL, NULL),
+(8, NULL, 6, 3, 'jumatan', 'Minggu 1', 'aaaaaaaaaa', '2020-04-13', NULL, NULL),
+(9, NULL, 6, NULL, 'Hari Besar Islam', 'Minggu 1', 'aaaaaaaaaa', '2020-04-16', NULL, NULL),
+(10, NULL, 6, NULL, 'Hari Besar Islam', 'idul fitri', 'fitri', '2020-04-19', NULL, NULL),
+(12, NULL, 5, NULL, 'Jumatan', 'Minggu 2', 'aaaaaaaaaa', '2020-04-20', NULL, NULL),
+(14, NULL, 6, NULL, 'Kajian', 'kajian 3', 'aaaaaaaaaa', '2020-04-29', 'icon_pc.jpg', 'icon_pc.jpg'),
+(15, NULL, 5, NULL, 'Jumatan', 'Minggu 5', 'aku', '2020-04-29', NULL, NULL),
+(16, NULL, 6, 4, 'Jumatan', 'Minggu5', 'aaaaaaaaaa', '2020-04-30', NULL, NULL),
+(17, NULL, 11, NULL, 'Kajian', 'kajian 1', 'fitri', '2020-04-30', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -74,14 +78,10 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`ID_ADMIN`, `USERNAME`, `PASSWORD`, `NAMA_ADMIN`, `NO_TELP_ADMIN`) VALUES
-(1, 'admin', 'admin', 'Irvand Nuruddin', '081359545155'),
-(2, NULL, '$2y$10$uDMwa624Nzs3oxYnz78rmOrQ/grczaDAFZSYJTXlAG.', NULL, NULL),
-(4, 'Ardi', '$2y$10$NXpPWUeszPNDTSxCdoJzNO3hZ/Jno0y5IhmrsvwLrga', 'Hilnanda Ardiansyah', '08994882244'),
-(5, 'admin3', '$2y$10$Ic2OFAuRwp4c780PBhrPpOCcqCesH83CjZupGgk.1Ro', 'dyah putri', '08994882221'),
-(6, 'admin3', '$2y$10$NtxCXvs2iC2Fbf1VdJZ4judGoZUBB9/OF3ThwHf1snK', 'dyah putri', '08994882221'),
-(7, 'admin4', '$2y$10$D5Uqsc99cJzQ6rRdTMXEGevwtKejffpvYmUKh9yiJhS', 'dyah putri', '08994882244'),
-(8, 'admin5', '$2y$10$1wflbs/1svtblH2Ek9klqOYiqQxfdfYdwamwMyzfEgI', 'krishna', '0899488223'),
-(9, 'admin6', '$2y$10$.5MrwliJDoJNzWWmoOTS7.x9sAWPV8sBEFfTY2zqor4', 'krishna', '0899488211');
+(11, 'ardi', '$2y$10$kCRyaHBm7WRUkVoWApBOzecpFuOMQkY1DBBFyQ4oBQH', 'Hilnanda Ardiansyah', '08994882244'),
+(12, 'ardi1', '1234', 'irvand', '08994882221'),
+(13, 'admin', '$2y$10$FuLuaSDGU/XT0U/X9R56Q.wkSNIVf2U60ZoPYG4e.gA', 'dyah putri', '08994882241'),
+(14, 'dyah', '$2y$10$par92umPwzVHpygJft5Jle5xhRVueLRTvRv08kc.ei6', 'dyah putri', '08994882244');
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,8 @@ CREATE TABLE `bilal` (
 
 INSERT INTO `bilal` (`ID_BILAL`, `NAMA_BILAL`, `NO_TELP_BILAL`, `ALAMAT_BILAL`) VALUES
 (2, 'Irvand', '08781707076', 'Soehat Malang'),
-(3, 'Hilnanda', '087817060676', 'Kalpataru V');
+(3, 'Hilnanda', '087817060676', 'Kalpataru V'),
+(4, 'Khrishna', '087817060671', 'Kalpataru X');
 
 -- --------------------------------------------------------
 
@@ -115,6 +116,17 @@ CREATE TABLE `foto` (
   `ID_ACARA` int(11) DEFAULT NULL,
   `FOTO` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `foto`
+--
+
+INSERT INTO `foto` (`ID_FOTO`, `ID_ACARA`, `FOTO`) VALUES
+(4, 8, 'an-nur.jpg'),
+(5, 10, 'bri.png'),
+(6, 14, 'boba.jpg'),
+(7, 2, 'mamah-sum.jpg'),
+(8, 14, 'icon_pc.jpg');
 
 -- --------------------------------------------------------
 
@@ -135,7 +147,8 @@ CREATE TABLE `penceramah` (
 
 INSERT INTO `penceramah` (`ID_PENCERAMAH`, `NAMA_PENCERAMAH`, `NO_TELP`, `ALAMAT_PENCERAMAH`) VALUES
 (5, 'Ustd. Ahmad Baha\'udin', '085101288099', 'Perum Pond Mutiara Bonagung Blok E 3 No. 08.'),
-(6, 'H. Zainal Arifin Mafa', '082132851742', 'Jl. Jombang Gg. I No. 10-D Malang\r\n');
+(6, 'H. Zainal Arifin Mafa', '082132851742', 'Jl. Jombang Gg. I No. 10-D Malang\r\n'),
+(11, 'Drs. H. Fadloli, M.Pd.I.', '081945720283', 'Griya Shanta C-205 Malang');
 
 -- --------------------------------------------------------
 
@@ -145,9 +158,25 @@ INSERT INTO `penceramah` (`ID_PENCERAMAH`, `NAMA_PENCERAMAH`, `NO_TELP`, `ALAMAT
 
 CREATE TABLE `template_pesan` (
   `ID_TEMPLATE` int(11) NOT NULL,
+  `ID_ACARA` int(11) NOT NULL,
   `ISI_PESAN` varchar(500) DEFAULT NULL,
   `STATUS` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `template_pesan`
+--
+
+INSERT INTO `template_pesan` (`ID_TEMPLATE`, `ID_ACARA`, `ISI_PESAN`, `STATUS`) VALUES
+(1, 0, 'tolong datang', ''),
+(2, 0, 'ass', ''),
+(3, 0, 'assalamualaikum', ''),
+(4, 0, 'ajfnjanf\r\n                        ', ''),
+(5, 0, '\r\n                        asdasd', ''),
+(6, 15, '\r\n                        ardikeren', ''),
+(7, 0, '\r\n                        asdasd', ''),
+(8, 9, 'wkowkowkwokw\r\n                        ', ''),
+(9, 14, 'assalamualaikum                 ', '');
 
 --
 -- Indexes for dumped tables
@@ -159,7 +188,6 @@ CREATE TABLE `template_pesan` (
 ALTER TABLE `acara`
   ADD PRIMARY KEY (`ID_ACARA`),
   ADD KEY `FK_ACARA_MEMPUNYAI_BILAL` (`ID_BILAL`),
-  ADD KEY `FK_ACARA_MENGAMBIL_TEMPLATE` (`ID_TEMPLATE`),
   ADD KEY `FK_ACARA_MENGINGAT_PENCERAM` (`ID_PENCERAMAH`),
   ADD KEY `FK_ACARA_MENGINPUT_ADMIN` (`ID_ADMIN`);
 
@@ -202,37 +230,37 @@ ALTER TABLE `template_pesan`
 -- AUTO_INCREMENT for table `acara`
 --
 ALTER TABLE `acara`
-  MODIFY `ID_ACARA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID_ACARA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID_ADMIN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID_ADMIN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `bilal`
 --
 ALTER TABLE `bilal`
-  MODIFY `ID_BILAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_BILAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `ID_FOTO` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_FOTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `penceramah`
 --
 ALTER TABLE `penceramah`
-  MODIFY `ID_PENCERAMAH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID_PENCERAMAH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `template_pesan`
 --
 ALTER TABLE `template_pesan`
-  MODIFY `ID_TEMPLATE` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_TEMPLATE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -243,7 +271,6 @@ ALTER TABLE `template_pesan`
 --
 ALTER TABLE `acara`
   ADD CONSTRAINT `FK_ACARA_MEMPUNYAI_BILAL` FOREIGN KEY (`ID_BILAL`) REFERENCES `bilal` (`ID_BILAL`),
-  ADD CONSTRAINT `FK_ACARA_MENGAMBIL_TEMPLATE` FOREIGN KEY (`ID_TEMPLATE`) REFERENCES `template_pesan` (`ID_TEMPLATE`),
   ADD CONSTRAINT `FK_ACARA_MENGINGAT_PENCERAM` FOREIGN KEY (`ID_PENCERAMAH`) REFERENCES `penceramah` (`ID_PENCERAMAH`),
   ADD CONSTRAINT `FK_ACARA_MENGINPUT_ADMIN` FOREIGN KEY (`ID_ADMIN`) REFERENCES `admin` (`ID_ADMIN`);
 
