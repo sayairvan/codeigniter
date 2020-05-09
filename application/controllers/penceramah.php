@@ -1,5 +1,6 @@
 <?php
     class Penceramah extends CI_Controller{
+        
         public function index(){
             $data['penceramah'] = $this->m_penceramah->tampil_data()->
             result(); // m_penceramah : nama model penceramah, tampil_data = u/mengambil data
@@ -57,5 +58,3 @@
             redirect('penceramah/index');
         }
     }
-
-?>

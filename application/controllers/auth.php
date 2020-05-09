@@ -7,24 +7,25 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct(); //memanggil method construct yg ada di CI_Controller
-        $this->load->library('form_validation');
-        // $this->load->model('m_login');
+        // $this->load->library('form_validation');
+        $this->load->model('m_login');
     }
     public function index()
     {
-        $this->form_validation->set_rules('USERNAME', 'Username', 'required|trim');
-        $this->form_validation->set_rules('PASSWORD', 'Password', 'required|trim');
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Login Page';
-            $this->load->view('template/auth_header', $data);
-            $this->load->view('auth/login');
-            $this->load->view('template/auth_footer');
-        } else {
-            //jika sukses validasinya
-            $this->aksi_login();
-            //dikasih _ supaya tidak bisa diakses dikls lain(method nya private)
+        // $this->form_validation->set_rules('USERNAME', 'Username', 'required|trim');
+        // $this->form_validation->set_rules('PASSWORD', 'Password', 'required|trim');
+        // if ($this->form_validation->run() == false) {
+        $data['title'] = 'Login Page';
+        $this->load->view('template/auth_header', $data);
+        $this->load->view('auth/login');
+        $this->load->view('template/auth_footer');
+        // } else {
+        //     //jika sukses validasinya
+        //     $this->aksi_login();
+        //     //dikasih _ supaya tidak bisa diakses dikls lain(method nya private)
 
-        }
+        // }
+
     }
     function aksi_login()
     {
@@ -34,11 +35,11 @@ class Auth extends CI_Controller
             'USERNAME' => $USERNAME,
             'PASSWORD' => $PASSWORD
         );
-        $cek = $this->db->get_where('admin', ['USERNAME' => $USERNAME])->row_array();
+        $cek = $this->m_login->cek_login('admin', $where)->num_rows();
         if ($cek > 0) {
 
             $data_session = array(
-                'nama' => $USERNAME,
+                'USERNAME' => $USERNAME,
                 'status' => "login"
             );
 
@@ -46,7 +47,11 @@ class Auth extends CI_Controller
 
             redirect(base_url("penceramah"));
         } else {
-            echo "Username dan password salah !";
+            // echo "Username dan password salah !";
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Wrong Password!
+          </div>');
+            redirect('auth');
         }
     }
     // private function _login()

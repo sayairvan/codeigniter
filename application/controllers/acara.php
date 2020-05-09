@@ -1,19 +1,30 @@
 <?php
 class Acara extends CI_Controller
 {
+    function __construct()
+    {
+        parent::__construct();
+
+        $this->load->helper(array('form', 'url'));
+
+        if ($this->session->userdata('status') != "login") {
+
+            redirect(base_url("auth"));
+        }
+    }
     public function index()
     {
-        // $data['title'] = 'Penceramah';
-        // $data['acara'] = $this->m_acara->tampil_data()->result(); // m_acara : nama model acara, tampil_data = u/mengambil data
+        $data['title'] = 'Penceramah';
+        $data['acara'] = $this->m_acara->tampil_data()->result(); // m_acara : nama model acara, tampil_data = u/mengambil data
 
-        // $data['penceramah'] = $this->m_penceramah->tampil_data()->result();
+        $data['penceramah'] = $this->m_penceramah->tampil_data()->result();
 
-        // $data['bilal'] = $this->m_bilal->tampil_data()->result();
+        $data['bilal'] = $this->m_bilal->tampil_data()->result();
 
-        // $this->load->view('template/header', $data); //u/ngeload view dari folder template
-        // $this->load->view('template/sidebar');
-        // $this->load->view('acara', $data);
-        // $this->load->view('template/footer');
+        $this->load->view('template/header', $data); //u/ngeload view dari folder template
+        $this->load->view('template/sidebar');
+        $this->load->view('acara', $data);
+        $this->load->view('template/footer');
     }
     public function kajian($kajian)
     {
@@ -48,6 +59,8 @@ class Acara extends CI_Controller
         $data['acara'] = $this->m_acara->tampil_hbi($haribesarislam)->result(); // m_acara : nama model acara, tampil_data = u/mengambil data
 
         $data['penceramah'] = $this->m_penceramah->tampil_data()->result();
+        // $data['penceramah'] = $this->m_penceramah->tampil_data()->result();
+
         $data['bilal'] = $this->m_bilal->tampil_data()->result();
 
         $this->load->view('template/header', $data); //u/ngeload view dari folder template
@@ -56,7 +69,7 @@ class Acara extends CI_Controller
         $this->load->view('template/footer');
     }
 
-    public function tambah_aksi()
+    public function tambah_aksi($method, $param)
     {
         $ID_PENCERAMAH = $this->input->post('ID_PENCERAMAH');
         $ID_BILAL = $this->input->post('ID_BILAL');
@@ -77,7 +90,8 @@ class Acara extends CI_Controller
         );
 
         $this->m_acara->input_data($data, 'acara');
-        redirect('acara/index');
+        // redirect('acara/index');
+        redirect('acara/' . $method . '/' . $param . '?jenis=' . $param);
     }
     public function hapus($ID_ACARA)
     {

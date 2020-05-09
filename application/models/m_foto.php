@@ -6,8 +6,8 @@ class M_foto extends CI_Model
         // return $this->db->get('BILAL');
 
         $this->db->select('*'); //untuk menampilkan semua data kedua tabel
-        $this->db->from('acara');
-        $this->db->join('foto', 'acara.ID_FOTO = foto.ID_FOTO'); //join untuk menggabungkan tabel
+        $this->db->from('foto');
+        $this->db->join('acara', 'acara.ID_ACARA = foto.ID_ACARA'); //join untuk menggabungkan tabel
         // $this->db->join('admin', 'admin.ID_ADMIN = acara.ID_ADMIN'); //join untuk menggabungkan tabel
         //$this->db->join('bilal', 'bilal.ID_BILAL = acara.ID_BILAL'); //join untuk menggabungkan tabel
         // $this->db->join('template_pesan', 'template_pesan.ID_TEMPLATE = acara.ID_TEMPLATE'); //join untuk menggabungkan tabel
@@ -17,8 +17,8 @@ class M_foto extends CI_Model
     public function tampil_kajian($where)
     {
         $this->db->select('*'); //untuk menampilkan semua data kedua tabel
-        $this->db->from('acara');
-        $this->db->join('foto', 'acara.ID_FOTO = foto.ID_FOTO'); //join untuk menggabungkan tabel
+        $this->db->from('foto');
+        $this->db->join('acara', 'acara.ID_ACARA = foto.ID_ACARA'); //join untuk menggabungkan tabel
         // $this->db->join('admin', 'admin.ID_ADMIN = acara.ID_ADMIN'); //join untuk menggabungkan tabel
         // $this->db->join('bilal', 'bilal.ID_BILAL = acara.ID_BILAL'); //join untuk menggabungkan tabel
         $this->db->where('JENIS_ACARA', $where);
@@ -29,8 +29,8 @@ class M_foto extends CI_Model
     public function tampil_jumatan($where)
     {
         $this->db->select('*'); //untuk menampilkan semua data kedua tabel
-        $this->db->from('acara');
-        $this->db->join('foto', 'acara.ID_FOTO = foto.ID_FOTO'); //join untuk menggabungkan tabel
+        $this->db->from('foto');
+        $this->db->join('acara', 'acara.ID_ACARA = foto.ID_ACARA'); //join untuk menggabungkan tabel
         // $this->db->join('admin', 'admin.ID_ADMIN = acara.ID_ADMIN'); //join untuk menggabungkan tabel
         //$this->db->join('bilal', 'bilal.ID_BILAL = acara.ID_BILAL'); //join untuk menggabungkan tabel
         $this->db->where('JENIS_ACARA', $where);
@@ -41,10 +41,13 @@ class M_foto extends CI_Model
     public function tampil_hbi($where)
     {
         $this->db->select('*'); //untuk menampilkan semua data kedua tabel
-        $this->db->from('acara');
-        $this->db->join('foto', 'acara.ID_FOTO = foto.ID_FOTO'); //join untuk menggabungkan tabel
+        $this->db->from('foto');
+        $this->db->join('acara', 'acara.ID_ACARA = foto.ID_ACARA'); //join untuk menggabungkan tabel
         // $this->db->join('admin', 'admin.ID_ADMIN = acara.ID_ADMIN'); //join untuk menggabungkan tabel
         //  //join untuk menggabungkan tabel
+        if ($where == 'Hari%20Besar%20Islam') {
+            $where = 'Hari Besar Islam';
+        }
         $this->db->where('JENIS_ACARA', $where);
         // $this->db->join('bilal', 'bilal.ID_BILAL = acara.ID_BILAL');
         // $this->db->join('template_pesan', 'template_pesan.ID_TEMPLATE = acara.ID_TEMPLATE'); //join untuk menggabungkan tabel

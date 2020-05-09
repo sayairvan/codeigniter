@@ -1,10 +1,9 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-    
-    $(document).ready(function(){
-        $('select.jenis').change(function(){
+    $(document).ready(function() {
+        $('select.jenis').change(function() {
             var selectedJenis = $(this).children('option:selected').val();
-            for (var i=0;i<selectedJenis.split('_')[2];i++){
+            for (var i = 0; i < selectedJenis.split('_')[2]; i++) {
                 if (selectedJenis.split('_')[0] == i) {
                     document.getElementById(i + '_pilihanAcara').style.display = 'block';
                 } else {
@@ -21,9 +20,9 @@
     function ambilJenis() {
         $.ajax({
             type: 'POST',
-            url: '<?php echo base_url()."index.php/template_pesan" ?>',
+            url: '<?php echo base_url() . "index.php/template_pesan" ?>',
             dataType: 'json',
-            success: function (data){
+            success: function(data) {
                 console.log(data);
             }
         });
@@ -45,7 +44,7 @@
     <section class="content">
         <!-- buat button tambah data acara -->
         <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i>
-        Tambah Template</button>
+            Tambah Template</button>
         <table class="table">
             <tr>
                 <th>No.</th>
@@ -91,72 +90,68 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" action="<?php echo base_url() . 'template_pesan/tambah_aksi';
-                    ?>">
-                    <div class="form-group">
-                        <label>Isi Pesan</label><br>
-                        <textarea name="ISI_PESAN" id="" cols="30" rows="10" style="width: 568px;height: 114px">
+                                                ?>">
+                        <div class="form-group">
+                            <label>Isi Pesan</label><br>
+                            <textarea name="ISI_PESAN" id="" cols="30" rows="10" style="width: 568px;height: 114px">
 
                         </textarea>
-                        <!-- <input type="text" name="ISI_PESAN" class="form-control" required> -->
-                    </div>
+                            <!-- <input type="text" name="ISI_PESAN" class="form-control" required> -->
+                        </div>
 
-                    <div class="form-group">
-                      <label>Jenis Acara</label>
-                      <select id="jenis" class="form-control jenis" name="JENIS_ACARA">
-                          <option value="" disabled selected>---Pilih Jenis Acara---</option>
-                          <?php 
-                          $count_jenis = 0;
-                          foreach ($tampil_jenis as $acr) {
-                            echo '<option value="' . $count_jenis . '_' . $acr->JENIS_ACARA . '_' . count($tampil_jenis) . '">' . $acr->JENIS_ACARA . '</option>';
-                            $count_jenis++;
-                        }
-                        ?>
-                    </select>
-                </div>
+                        <div class="form-group">
+                            <label>Jenis Acara</label>
+                            <select id="jenis" class="form-control jenis" name="JENIS_ACARA">
+                                <option value="" disabled selected>---Pilih Jenis Acara---</option>
+                                <?php
+                                $count_jenis = 0;
+                                foreach ($tampil_jenis as $acr) {
+                                    echo '<option value="' . $count_jenis . '_' . $acr->JENIS_ACARA . '_' . count($tampil_jenis) . '">' . $acr->JENIS_ACARA . '</option>';
+                                    $count_jenis++;
+                                }
+                                ?>
+                            </select>
+                        </div>
 
-                <?php 
-                $count_acara = 0;
-                foreach ($tampil_jenis as $j_acr) {
-                    ?>
-                    <div class="form-group" id="<?php echo $count_acara . '_' . 'pilihanAcara'; ?>" style="display: none;">
-                      <label>Nama Acara</label>
-                      <select class="form-control" name="ID_ACARA">
                         <?php
-                        echo '<option value="" disabled selected>---Pilih Nama Acara---</option>';
-                        foreach ($tampil_acara as $acr) {
-                            if ($j_acr->JENIS_ACARA == $acr->JENIS_ACARA) {
-                                echo '<option value="' . $acr->ID_ACARA . '">' . $acr->NAMA_ACARA;
-                                echo "</option>";
-                            }
-                        }
-                        ?>
-                    </select>
-                </div>
-            <?php
-            $count_acara++; 
-        } ?>
+                        $count_acara = 0;
+                        foreach ($tampil_jenis as $j_acr) {
+                            ?>
+                            <div class="form-group" id="<?php echo $count_acara . '_' . 'pilihanAcara'; ?>" style="display: none;">
+                                <label>Nama Acara</label>
+                                <select class="form-control" name="NAMA_ACARA">
 
-        <!-- <div class="form-group" id="ifYes" style="display: none;">
+                                    <?php
+                                    echo '<option value="" disabled selected>---Pilih Nama Acara---</option>';
+                                    foreach ($tampil_acara as $acr) {
+                                        if ($j_acr->JENIS_ACARA == $acr->JENIS_ACARA) {
+                                            echo '<option value="' . $acr->NAMA_ACARA . '">' . $acr->NAMA_ACARA;
+                                            echo "</option>";
+                                            // echo '<input type="hidden" value="' . $acr->ID_ACARA . '">';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <?php
+                            $count_acara++;
+                        } ?>
+
+                        <!-- <div class="form-group" id="ifYes" style="display: none;">
           <label>Nama Acara</label>
           <select class="form-control" name="ID_ACARA">
-            <?php
-            echo '<option value="" disabled selected>---Pilih Nama Acara---</option>';
-            foreach ($tampil_acara as $acr) {
-                echo '<option value="' . $acr->ID_ACARA . '">' . $acr->NAMA_ACARA;
-                echo "</option>";
-            }
-            ?>
+           
         </select>
     </div> -->
 
-    <button type="reset" class="btn btn-danger">Reset</button>
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
-</div>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
 
-</div>
-</div>
-</div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- <script type="text/javascript">
 function yesnoCheck(that) {

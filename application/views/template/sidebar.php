@@ -48,9 +48,9 @@
         </a>
         <ul class="treeview-menu">
           <!-- dari acara view dilempar ke namafungsi/parameter di controller  -->
-          <li class=""><a href="<?php echo base_url(); ?>acara/kajian/Kajian?jenis=<?php echo 'Kajian' ?>"><i class="fa fa-circle-o"></i> Kajian</a></li>
-          <li><a href="<?php echo base_url(); ?>acara/jumatan/Jumatan?jenis=<?php echo 'Jumatan' ?>"><i class="fa fa-circle-o"></i> Jumatan</a></li>
-          <li><a href="<?php echo base_url(); ?>acara/haribesarislam/Hari Besar Islam?jenis=<?php echo 'Hari Besar Islam' ?>"><i class="fa fa-circle-o"></i> Hari Besar Islam</a></li>
+          <li class=""><a href="<?php echo base_url(); ?>acara/kajian/Kajian?jenis=Kajian"><i class="fa fa-circle-o"></i> Kajian</a></li>
+          <li><a href="<?php echo base_url(); ?>acara/jumatan/Jumatan?jenis=Jumatan"><i class="fa fa-circle-o"></i> Jumatan</a></li>
+          <li><a href="<?php echo base_url(); ?>acara/haribesarislam/Hari Besar Islam?jenis=Hari Besar Islam"><i class="fa fa-circle-o"></i> Hari Besar Islam</a></li>
         </ul>
       </li>
 

@@ -1,6 +1,17 @@
 <?php
 class Template_pesan extends CI_Controller
 {
+    function __construct()
+    {
+        parent::__construct();
+
+        $this->load->helper(array('form', 'url'));
+
+        if ($this->session->userdata('status') != "login") {
+
+            redirect(base_url("auth"));
+        }
+    }
     public function index()
     {
         $data['title'] = 'Penceramah';
@@ -18,16 +29,37 @@ class Template_pesan extends CI_Controller
 
     public function tambah_aksi()
     {
-        $ID_TEMPLATE = $this->input->post('ID_TEMPLATE');
+        // $ID_TEMPLATE = $this->input->post('ID_TEMPLATE');
         $ISI_PESAN = $this->input->post('ISI_PESAN');
+        $JENIS_ACARA = $this->input->post('JENIS_ACARA');
+        $NAMA_ACARA = $this->input->post('NAMA_ACARA');
+        $split_jenis = explode("_", $JENIS_ACARA);   //split value 0_kajian_3 di controller
 
+
+        // $data1 = array(
+        //     // 'ID_TEMPLATE' => $ID_TEMPLATE,
+        //     // 'ISI_PESAN' => $ISI_PESAN,
+        //     'JENIS_ACARA' => $split_jenis[1],
+        //     'NAMA_ACARA' => $NAMA_ACARA
+
+        // );
+
+
+        // $data1 = array('ID_TEMPLATE' => $ID_TEMPLATE);
+        // $where = array('NAMA_ACARA' => $NAMA_ACARA);
+
+        $postdata = $this->m_template->tampil_id_acara($split_jenis[1], $NAMA_ACARA)
+            ->row_array(); //digunakan untuk memanggil fungsi lalu di ambil baris arraynya
 
         $data = array(
-            'ID_TEMPLATE' => $ID_TEMPLATE,
+            // 'ID_TEMPLATE' => $ID_TEMPLATE,
             'ISI_PESAN' => $ISI_PESAN,
+            'ID_ACARA' => $postdata['ID_ACARA'] //mengambil nilai dari kolom ID_ACARA
+
         );
 
         $this->m_template->input_data($data, 'template_pesan');
+        // $this->m_template->update_data($where, $data1, 'acara');
         redirect('template_pesan/index');
     }
     public function hapus($ID_TEMPLATE)

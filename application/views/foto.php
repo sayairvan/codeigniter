@@ -1,3 +1,16 @@
+<?php
+$jenis = $_GET['jenis'];
+$jenis_acara;
+if ($jenis == 'Kajian') {
+    $jenis_acara = 'kajian';
+} else if ($jenis == 'Jumatan') {
+    $jenis_acara = 'jumatan';
+} else {
+
+    $jenis_acara = 'haribesarislam';
+}
+?>
+
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -53,28 +66,27 @@
                 <th>Jenis acara</th>
                 <th>Nama Acara</th>
                 <th>Upload Foto</th>
-                <th>Upload Pamflet</th>
-                <th>Upload Video</th>
+                <!-- <th>Upload Pamflet</th>
+                <th>Upload Video</th> -->
                 <th colspan="2" style="text-align:center">Aksi</th>
             </tr>
             <?php
             $no = 1;
-            foreach ($foto as $acr) : ?>
+            foreach ($foto as $ft) : ?>
 
                 <tr>
                     <td><?php echo $no++ ?></td>
-                    <td><?php echo $acr->JENIS_ACARA ?></td>
-                    <td><?php echo $acr->NAMA_ACARA ?></td>
-                    <td style="text-align: center"><img src="<?php echo base_url('upload/') ?> <?php echo $acr->FOTO ?>" width="150" height="auto" alt=""></td>
-                    <td style="text-align: center"><img src="<?php echo base_url('upload/') ?> <?php echo $acr->PAMFLET_ACARA ?>" width="150" height="auto" alt=""></td>
-                    <td style="text-align: center"><img src="<?php echo base_url('upload/') ?> <?php echo $acr->VIDEO_ACARA ?>" width="150" height="auto" alt=""></td>
-                    <td onclick="return confirm('Apakah Yakin Anda ingin menghapus?')">
-                        <?php echo anchor('foto/hapus/' . $acr->ID_FOTO, '<div class="btn btn-danger btn-sm"><i class ="fa fa-trash"></i></div>') ?>
+                    <td><?php echo $ft->JENIS_ACARA ?></td>
+                    <td><?php echo $ft->NAMA_ACARA ?></td>
+                    <td>
+                        <img width="200" src="<?php echo base_url(); ?>upload/<?php echo $ft->FOTO ?>" alt="">
+                    </td>
+                    <td style="text-align: center" onclick="return confirm('Apakah Yakin Anda ingin menghapus?')">
+                        <?php echo anchor('foto/hapus/' . $ft->ID_FOTO, '<div class="btn btn-danger btn-sm"><i class ="fa fa-trash"></i></div>') ?>
+                        <?php echo anchor('foto/edit/' . $ft->ID_FOTO, '<div class="btn btn-primary btn-sm"><i class ="fa fa-edit"></i></div>') ?>
                     </td>
 
-                    <td>
-                        <?php echo anchor('foto/edit/' . $acr->ID_FOTO, '<div class="btn btn-primary btn-sm"><i class ="fa fa-edit"></i></div>') ?>
-                    </td>
+
                 </tr>
             <?php endforeach ?>
         </table>
@@ -95,70 +107,59 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="<?php echo base_url() . 'foto/tambah_aksi';
-                                                ?>">
+                    <?php echo form_open_multipart('foto/tambah_aksi/' . $jenis_acara . '/' . $jenis); ?>
 
-                        <div class="form-group">
-                            <label>Jenis Acara</label>
-                            <select id="jenis" class="form-control jenis" name="JENIS_ACARA">
-                                <option value="" disabled selected>---Pilih Jenis Acara---</option>
+                    <div class="form-group">
+                        <label>Jenis Acara</label>
+                        <select id="jenis" class="form-control jenis" name="JENIS_ACARA">
+                            <option value="" disabled selected>---Pilih Jenis Acara---</option>
+                            <?php
+                            $count_jenis = 0;
+                            foreach ($tampil_jenis as $acr) {
+                                echo '<option value="' . $count_jenis . '_' . $acr->JENIS_ACARA . '_' . count($tampil_jenis) . '">' . $acr->JENIS_ACARA . '</option>';
+                                $count_jenis++;
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <?php
+                    $count_acara = 0;
+                    foreach ($tampil_jenis as $j_acr) {
+                        ?>
+                        <div class="form-group" id="<?php echo $count_acara . '_' . 'pilihanAcara'; ?>" style="display: none;">
+                            <label>Nama Acara</label>
+                            <select class="form-control" name="NAMA_ACARA">
                                 <?php
-                                $count_jenis = 0;
-                                foreach ($tampil_jenis as $acr) {
-                                    echo '<option value="' . $count_jenis . '_' . $acr->JENIS_ACARA . '_' . count($tampil_jenis) . '">' . $acr->JENIS_ACARA . '</option>';
-                                    $count_jenis++;
+                                echo '<option value="" disabled selected>---Pilih Nama Acara---</option>';
+                                foreach ($tampil_acara as $acr) {
+                                    if ($j_acr->JENIS_ACARA == $acr->JENIS_ACARA) {
+                                        echo '<option value="' . $acr->NAMA_ACARA . '">' . $acr->NAMA_ACARA;
+                                        echo "</option>";
+                                    }
                                 }
                                 ?>
                             </select>
                         </div>
-
                         <?php
-                        $count_acara = 0;
-                        foreach ($tampil_jenis as $j_acr) {
-                            ?>
-                            <div class="form-group" id="<?php echo $count_acara . '_' . 'pilihanAcara'; ?>" style="display: none;">
-                                <label>Nama Acara</label>
-                                <select class="form-control" name="ID_ACARA">
-                                    <?php
-                                    echo '<option value="" disabled selected>---Pilih Nama Acara---</option>';
-                                    foreach ($tampil_acara as $acr) {
-                                        if ($j_acr->JENIS_ACARA == $acr->JENIS_ACARA) {
-                                            echo '<option value="' . $acr->ID_ACARA . '">' . $acr->NAMA_ACARA;
-                                            echo "</option>";
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <?php
-                            $count_acara++;
-                        } ?>
+                        $count_acara++;
+                    } ?>
 
-                        <div class="form-group">
-                            <label>Upload Foto</label>
-                            <input type="file" name="FOTO" class="form-control" placeholder="Isikan Tema Acara" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Upload Pamflet</label>
-                            <input type="file" name="PAMFLET_ACARA" class="form-control" placeholder="Isikan Tema Acara" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Upload Video</label>
-                            <input type="file" name="VIDEO_ACARA" class="form-control" placeholder="Isikan Tema Acara" required>
-                        </div>
-
-
-
-                        <?php
-                        echo '<option value="" disabled selected>---Pilih Nama Acara---</option>';
-                        foreach ($tampil_acara as $acr) {
-                            echo '<option value="' . $acr->ID_ACARA . '">' . $acr->NAMA_ACARA;
-                            echo "</option>";
-                        }
-                        ?>
-                        <button type="reset" class="btn btn-danger">Reset</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </form>
+                    <div class="form-group">
+                        <label>Upload Foto</label>
+                        <input type="file" name="FOTO" class="form-control" placeholder="Isikan foto acara" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Pamflet</label>
+                        <input type="file" name="PAMFLET_ACARA" class="form-control" placeholder="Isikan Tema Acara" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Video</label>
+                        <input type="file" name="VIDEO_ACARA" class="form-control" placeholder="Isikan Tema Acara" required>
+                    </div>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <?php echo form_close(); ?>
                 </div>
 
             </div>

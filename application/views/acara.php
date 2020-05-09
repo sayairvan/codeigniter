@@ -1,5 +1,14 @@
 <?php
 $jenis = $_GET['jenis'];
+$jenis_acara;
+if ($jenis == 'Kajian') {
+  $jenis_acara = 'kajian';
+} else if ($jenis == 'Jumatan') {
+  $jenis_acara = 'jumatan';
+} else {
+
+  $jenis_acara = 'haribesarislam';
+}
 ?>
 <div class="content-wrapper">
   <section class="content-header">
@@ -65,8 +74,9 @@ $jenis = $_GET['jenis'];
           </button>
         </div>
         <div class="modal-body">
-          <form method="post" action="<?php echo base_url() . 'acara/tambah_aksi';
-                                      ?>">
+          <form method="post" action="<?php echo base_url() ?>acara/tambah_aksi/<?php echo $jenis_acara . '/' . $jenis ?>
+                                      ">
+            <!-- acara iki controller e, tambah_aksi function, / parameter e ada 2(method,ambe param) -->
 
             <div class="form-group">
               <label>Jenis Acara</label>
@@ -133,7 +143,7 @@ $jenis = $_GET['jenis'];
 </div>
 <script type="text/javascript">
   function yesnoCheck(that) {
-    if (that.value == "jumatan") {
+    if (that.value == "Jumatan") {
       //   alert("check");
       document.getElementById("ifYes").style.display = "block";
     } else {
