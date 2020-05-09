@@ -1,270 +1,259 @@
-/*==============================================================*/
-/* DBMS name:      SAP SQL Anywhere 17                          */
-/* Created on:     18/03/2020 17:20:19                          */
-/*==============================================================*/
+-- phpMyAdmin SQL Dump
+-- version 5.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 19, 2020 at 05:42 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
--- if exists(select 1 from sys.sysforeignkey where role='FK_ACARA_MEMPUNYAI_BILAL') then
---     alter table ACARA
---        delete foreign key FK_ACARA_MEMPUNYAI_BILAL
--- end if;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
--- if exists(select 1 from sys.sysforeignkey where role='FK_ACARA_MENGAMBIL_TEMPLATE') then
---     alter table ACARA
---        delete foreign key FK_ACARA_MENGAMBIL_TEMPLATE
--- end if;
+--
+-- Database: `database_masjid_annur`
+--
 
--- if exists(select 1 from sys.sysforeignkey where role='FK_ACARA_MENGINGAT_PENCERAM') then
---     alter table ACARA
---        delete foreign key FK_ACARA_MENGINGAT_PENCERAM
--- end if;
+-- --------------------------------------------------------
 
--- if exists(select 1 from sys.sysforeignkey where role='FK_ACARA_MENGINPUT_ADMIN') then
---     alter table ACARA
---        delete foreign key FK_ACARA_MENGINPUT_ADMIN
--- end if;
+--
+-- Table structure for table `acara`
+--
 
--- if exists(select 1 from sys.sysforeignkey where role='FK_BILAL_MEMPUNYAI_ACARA') then
---     alter table BILAL
---        delete foreign key FK_BILAL_MEMPUNYAI_ACARA
--- end if;
+CREATE TABLE `acara` (
+  `ID_ACARA` int(11) NOT NULL,
+  `ID_ADMIN` int(11) DEFAULT NULL,
+  `ID_PENCERAMAH` int(11) DEFAULT NULL,
+  `ID_BILAL` int(11) DEFAULT NULL,
+  `ID_TEMPLATE` int(11) DEFAULT NULL,
+  `JENIS_ACARA` varchar(100) DEFAULT NULL,
+  `NAMA_ACARA` varchar(100) DEFAULT NULL,
+  `TEMA_ACARA` varchar(255) DEFAULT NULL,
+  `TGL_ACARA` date DEFAULT NULL,
+  `PAMFLET_ACARA` varchar(1000) DEFAULT NULL,
+  `VIDEO_ACARA` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- if exists(select 1 from sys.sysforeignkey where role='FK_FOTO_MEMILIKI_ACARA') then
---     alter table FOTO
---        delete foreign key FK_FOTO_MEMILIKI_ACARA
--- end if;
+--
+-- Dumping data for table `acara`
+--
 
--- drop index if exists ACARA.MENGINPUT_FK;
+INSERT INTO `acara` (`ID_ACARA`, `ID_ADMIN`, `ID_PENCERAMAH`, `ID_BILAL`, `ID_TEMPLATE`, `JENIS_ACARA`, `NAMA_ACARA`, `TEMA_ACARA`, `TGL_ACARA`, `PAMFLET_ACARA`, `VIDEO_ACARA`) VALUES
+(2, NULL, NULL, NULL, NULL, 'Hari Besar Islam', 'Maulid Nabi', 'membangun insan', '2020-01-20', NULL, NULL),
+(3, NULL, NULL, NULL, NULL, 'Kajian', 'Maulid Nabi Muhammad SAW', '', '2020-04-21', NULL, NULL),
+(4, NULL, NULL, NULL, NULL, 'Kajian', 'Coba', '', '2020-04-13', NULL, NULL),
+(5, NULL, 5, NULL, NULL, 'Kajian', 'Putri', '', '2020-04-13', NULL, NULL),
+(6, NULL, 6, NULL, NULL, 'Hari Besar Islam', 'Maulid Nabi', 'aaaaaaaaaa', '2020-04-13', NULL, NULL),
+(8, NULL, 6, 3, NULL, 'jumatan', 'Minggu 1', 'aaaaaaaaaa', '2020-04-13', NULL, NULL),
+(9, NULL, 6, NULL, NULL, 'Hari Besar Islam', 'Minggu 1', 'aaaaaaaaaa', '2020-04-16', NULL, NULL);
 
--- drop index if exists ACARA.MEMPUNYAI2_FK;
+-- --------------------------------------------------------
 
--- drop index if exists ACARA.MENGINGATKAN_FK;
+--
+-- Table structure for table `admin`
+--
 
--- drop index if exists ACARA.MENGAMBIL_FK;
+CREATE TABLE `admin` (
+  `ID_ADMIN` int(11) NOT NULL,
+  `USERNAME` varchar(50) DEFAULT NULL,
+  `PASSWORD` varchar(50) DEFAULT NULL,
+  `NAMA_ADMIN` varchar(100) DEFAULT NULL,
+  `NO_TELP_ADMIN` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- drop index if exists ACARA.ACARA_PK;
+--
+-- Dumping data for table `admin`
+--
 
--- drop table if exists ACARA;
+INSERT INTO `admin` (`ID_ADMIN`, `USERNAME`, `PASSWORD`, `NAMA_ADMIN`, `NO_TELP_ADMIN`) VALUES
+(1, 'admin', 'admin', 'Irvand Nuruddin', '081359545155'),
+(2, NULL, '$2y$10$uDMwa624Nzs3oxYnz78rmOrQ/grczaDAFZSYJTXlAG.', NULL, NULL),
+(4, 'Ardi', '$2y$10$NXpPWUeszPNDTSxCdoJzNO3hZ/Jno0y5IhmrsvwLrga', 'Hilnanda Ardiansyah', '08994882244'),
+(5, 'admin3', '$2y$10$Ic2OFAuRwp4c780PBhrPpOCcqCesH83CjZupGgk.1Ro', 'dyah putri', '08994882221'),
+(6, 'admin3', '$2y$10$NtxCXvs2iC2Fbf1VdJZ4judGoZUBB9/OF3ThwHf1snK', 'dyah putri', '08994882221'),
+(7, 'admin4', '$2y$10$D5Uqsc99cJzQ6rRdTMXEGevwtKejffpvYmUKh9yiJhS', 'dyah putri', '08994882244'),
+(8, 'admin5', '$2y$10$1wflbs/1svtblH2Ek9klqOYiqQxfdfYdwamwMyzfEgI', 'krishna', '0899488223'),
+(9, 'admin6', '$2y$10$.5MrwliJDoJNzWWmoOTS7.x9sAWPV8sBEFfTY2zqor4', 'krishna', '0899488211');
 
--- drop index if exists ADMIN.ADMIN_PK;
+-- --------------------------------------------------------
 
--- drop table if exists ADMIN;
+--
+-- Table structure for table `bilal`
+--
 
--- drop index if exists BILAL.MEMPUNYAI_FK;
+CREATE TABLE `bilal` (
+  `ID_BILAL` int(11) NOT NULL,
+  `NAMA_BILAL` varchar(100) DEFAULT NULL,
+  `NO_TELP_BILAL` varchar(100) DEFAULT NULL,
+  `ALAMAT_BILAL` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- drop index if exists BILAL.BILAL_PK;
+--
+-- Dumping data for table `bilal`
+--
 
--- drop table if exists BILAL;
+INSERT INTO `bilal` (`ID_BILAL`, `NAMA_BILAL`, `NO_TELP_BILAL`, `ALAMAT_BILAL`) VALUES
+(2, 'Irvand', '08781707076', 'Soehat Malang'),
+(3, 'Hilnanda', '087817060676', 'Kalpataru V');
 
--- drop index if exists FOTO.MEMILIKI_FK;
+-- --------------------------------------------------------
 
--- drop index if exists FOTO.FOTO_PK;
+--
+-- Table structure for table `foto`
+--
 
--- drop table if exists FOTO;
+CREATE TABLE `foto` (
+  `ID_FOTO` int(11) NOT NULL,
+  `ID_ACARA` int(11) DEFAULT NULL,
+  `FOTO` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- drop index if exists PENCERAMAH.PENCERAMAH_PK;
+-- --------------------------------------------------------
 
--- drop table if exists PENCERAMAH;
+--
+-- Table structure for table `penceramah`
+--
 
--- drop index if exists TEMPLATE_PESAN.TEMPLATE_PESAN_PK;
+CREATE TABLE `penceramah` (
+  `ID_PENCERAMAH` int(11) NOT NULL,
+  `NAMA_PENCERAMAH` varchar(50) DEFAULT NULL,
+  `NO_TELP` varchar(50) DEFAULT NULL,
+  `ALAMAT_PENCERAMAH` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- drop table if exists TEMPLATE_PESAN;
+--
+-- Dumping data for table `penceramah`
+--
 
-/*==============================================================*/
-/* Table: ACARA                                                 */
-/*==============================================================*/
-create or replace table ACARA 
-(
-   ID_ACARA             integer                        not null,
-   ID_ADMIN             integer                        null,
-   ID_PENCERAMAH        integer                        null,
-   ID_BILAL             integer                        null,
-   ID_TEMPLATE          integer                        null,
-   JENIS_ACARA          varchar(100)                   null,
-   NAMA_KAJIAN2         varchar(100)                   null,
-   TEMA_ACARA           varchar(255)                   null,
-   TGL_ACARA            date                           null,
-   PAMFLET_ACARA        varchar(1000)                  null,
-   VIDEO_ACARA          varchar(1000)                  null,
-   constraint PK_ACARA primary key clustered (ID_ACARA)
-);
+INSERT INTO `penceramah` (`ID_PENCERAMAH`, `NAMA_PENCERAMAH`, `NO_TELP`, `ALAMAT_PENCERAMAH`) VALUES
+(5, 'Ustd. Ahmad Baha\'udin', '085101288099', 'Perum Pond Mutiara Bonagung Blok E 3 No. 08.'),
+(6, 'H. Zainal Arifin Mafa', '082132851742', 'Jl. Jombang Gg. I No. 10-D Malang\r\n');
 
-/*==============================================================*/
-/* Index: ACARA_PK                                              */
-/*==============================================================*/
--- create unique clustered index ACARA_PK on ACARA (
--- ID_ACARA ASC
--- );
+-- --------------------------------------------------------
 
--- /*==============================================================*/
--- /* Index: MENGAMBIL_FK                                          */
--- /*==============================================================*/
--- create index MENGAMBIL_FK on ACARA (
--- ID_TEMPLATE ASC
--- );
+--
+-- Table structure for table `template_pesan`
+--
 
--- /*==============================================================*/
--- /* Index: MENGINGATKAN_FK                                       */
--- /*==============================================================*/
--- create index MENGINGATKAN_FK on ACARA (
--- ID_PENCERAMAH ASC
--- );
+CREATE TABLE `template_pesan` (
+  `ID_TEMPLATE` int(11) NOT NULL,
+  `ISI_PESAN` varchar(500) DEFAULT NULL,
+  `STATUS` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- /*==============================================================*/
--- /* Index: MEMPUNYAI2_FK                                         */
--- /*==============================================================*/
--- create index MEMPUNYAI2_FK on ACARA (
--- ID_BILAL ASC
--- );
+--
+-- Indexes for dumped tables
+--
 
--- /*==============================================================*/
--- /* Index: MENGINPUT_FK                                          */
--- /*==============================================================*/
--- create index MENGINPUT_FK on ACARA (
--- ID_ADMIN ASC
--- );
+--
+-- Indexes for table `acara`
+--
+ALTER TABLE `acara`
+  ADD PRIMARY KEY (`ID_ACARA`),
+  ADD KEY `FK_ACARA_MEMPUNYAI_BILAL` (`ID_BILAL`),
+  ADD KEY `FK_ACARA_MENGAMBIL_TEMPLATE` (`ID_TEMPLATE`),
+  ADD KEY `FK_ACARA_MENGINGAT_PENCERAM` (`ID_PENCERAMAH`),
+  ADD KEY `FK_ACARA_MENGINPUT_ADMIN` (`ID_ADMIN`);
 
-/*==============================================================*/
-/* Table: ADMIN                                                 */
-/*==============================================================*/
-create or replace table ADMIN 
-(
-   ID_ADMIN             integer                        not null,
-   USERNAME             varchar(50)                    null,
-   PASSWORD             varchar(50)                    null,
-   NAMA_ADMIN           varchar(100)                   null,
-   NO_TELP_ADMIN        varchar(100)                   null,
-   constraint PK_ADMIN primary key clustered (ID_ADMIN)
-);
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`ID_ADMIN`);
 
-/*==============================================================*/
-/* Index: ADMIN_PK                                              */
-/*==============================================================*/
--- create unique clustered index ADMIN_PK on ADMIN (
--- ID_ADMIN ASC
--- );
+--
+-- Indexes for table `bilal`
+--
+ALTER TABLE `bilal`
+  ADD PRIMARY KEY (`ID_BILAL`);
 
-/*==============================================================*/
-/* Table: BILAL                                                 */
-/*==============================================================*/
-create or replace table BILAL 
-(
-   ID_BILAL             integer                        not null,
-   ID_ACARA             integer                        null,
-   NAMA_BILAL           varchar(100)                   null,
-   NO_TELP_BILAL        varchar(100)                   null,
-   ALAMAT_BILAL         varchar(500)                   null,
-   constraint PK_BILAL primary key clustered (ID_BILAL)
-);
+--
+-- Indexes for table `foto`
+--
+ALTER TABLE `foto`
+  ADD PRIMARY KEY (`ID_FOTO`),
+  ADD KEY `FK_FOTO_MEMILIKI_ACARA` (`ID_ACARA`);
 
-/*==============================================================*/
-/* Index: BILAL_PK                                              */
-/*==============================================================*/
--- create unique clustered index BILAL_PK on BILAL (
--- ID_BILAL ASC
--- );
+--
+-- Indexes for table `penceramah`
+--
+ALTER TABLE `penceramah`
+  ADD PRIMARY KEY (`ID_PENCERAMAH`);
 
-/*==============================================================*/
-/* Index: MEMPUNYAI_FK                                          */
-/*==============================================================*/
--- create index MEMPUNYAI_FK on BILAL (
--- ID_ACARA ASC
--- );
+--
+-- Indexes for table `template_pesan`
+--
+ALTER TABLE `template_pesan`
+  ADD PRIMARY KEY (`ID_TEMPLATE`);
 
-/*==============================================================*/
-/* Table: FOTO                                                  */
-/*==============================================================*/
-create or replace table FOTO 
-(
-   ID_FOTO              integer                        not null,
-   ID_ACARA             integer                        null,
-   FOTO                 varchar(1000)                  null,
-   constraint PK_FOTO primary key clustered (ID_FOTO)
-);
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
-/*==============================================================*/
-/* Index: FOTO_PK                                               */
-/*==============================================================*/
--- create unique clustered index FOTO_PK on FOTO (
--- ID_FOTO ASC
--- );
+--
+-- AUTO_INCREMENT for table `acara`
+--
+ALTER TABLE `acara`
+  MODIFY `ID_ACARA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
--- /*==============================================================*/
--- /* Index: MEMILIKI_FK                                           */
--- /*==============================================================*/
--- create index MEMILIKI_FK on FOTO (
--- ID_ACARA ASC
--- );
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `ID_ADMIN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
-/*==============================================================*/
-/* Table: PENCERAMAH                                            */
-/*==============================================================*/
-create or replace table PENCERAMAH 
-(
-   ID_PENCERAMAH        integer                        not null,
-   NAMA_PENCERAMAH      varchar(50)                    null,
-   NO_TELP              varchar(50)                    null,
-   ALAMAT_PENCERAMAH    varchar(255)                   null,
-   constraint PK_PENCERAMAH primary key clustered (ID_PENCERAMAH)
-);
+--
+-- AUTO_INCREMENT for table `bilal`
+--
+ALTER TABLE `bilal`
+  MODIFY `ID_BILAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
-/*==============================================================*/
-/* Index: PENCERAMAH_PK                                         */
-/*==============================================================*/
--- create unique clustered index PENCERAMAH_PK on PENCERAMAH (
--- ID_PENCERAMAH ASC
--- );
+--
+-- AUTO_INCREMENT for table `foto`
+--
+ALTER TABLE `foto`
+  MODIFY `ID_FOTO` int(11) NOT NULL AUTO_INCREMENT;
 
-/*==============================================================*/
-/* Table: TEMPLATE_PESAN                                        */
-/*==============================================================*/
-create or replace table TEMPLATE_PESAN 
-(
-   ID_TEMPLATE          integer                        not null,
-   ISI_PESAN            varchar(500)                   null,
-   constraint PK_TEMPLATE_PESAN primary key clustered (ID_TEMPLATE)
-);
+--
+-- AUTO_INCREMENT for table `penceramah`
+--
+ALTER TABLE `penceramah`
+  MODIFY `ID_PENCERAMAH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
-/*==============================================================*/
-/* Index: TEMPLATE_PESAN_PK                                     */
-/*==============================================================*/
--- create unique clustered index TEMPLATE_PESAN_PK on TEMPLATE_PESAN (
--- ID_TEMPLATE ASC
--- );
+--
+-- AUTO_INCREMENT for table `template_pesan`
+--
+ALTER TABLE `template_pesan`
+  MODIFY `ID_TEMPLATE` int(11) NOT NULL AUTO_INCREMENT;
 
-alter table ACARA
-   add constraint FK_ACARA_MEMPUNYAI_BILAL foreign key (ID_BILAL)
-      references BILAL (ID_BILAL)
-      on update restrict
-      on delete restrict;
+--
+-- Constraints for dumped tables
+--
 
-alter table ACARA
-   add constraint FK_ACARA_MENGAMBIL_TEMPLATE foreign key (ID_TEMPLATE)
-      references TEMPLATE_PESAN (ID_TEMPLATE)
-      on update restrict
-      on delete restrict;
+--
+-- Constraints for table `acara`
+--
+ALTER TABLE `acara`
+  ADD CONSTRAINT `FK_ACARA_MEMPUNYAI_BILAL` FOREIGN KEY (`ID_BILAL`) REFERENCES `bilal` (`ID_BILAL`),
+  ADD CONSTRAINT `FK_ACARA_MENGAMBIL_TEMPLATE` FOREIGN KEY (`ID_TEMPLATE`) REFERENCES `template_pesan` (`ID_TEMPLATE`),
+  ADD CONSTRAINT `FK_ACARA_MENGINGAT_PENCERAM` FOREIGN KEY (`ID_PENCERAMAH`) REFERENCES `penceramah` (`ID_PENCERAMAH`),
+  ADD CONSTRAINT `FK_ACARA_MENGINPUT_ADMIN` FOREIGN KEY (`ID_ADMIN`) REFERENCES `admin` (`ID_ADMIN`);
 
-alter table ACARA
-   add constraint FK_ACARA_MENGINGAT_PENCERAM foreign key (ID_PENCERAMAH)
-      references PENCERAMAH (ID_PENCERAMAH)
-      on update restrict
-      on delete restrict;
+--
+-- Constraints for table `foto`
+--
+ALTER TABLE `foto`
+  ADD CONSTRAINT `FK_FOTO_MEMILIKI_ACARA` FOREIGN KEY (`ID_ACARA`) REFERENCES `acara` (`ID_ACARA`);
+COMMIT;
 
-alter table ACARA
-   add constraint FK_ACARA_MENGINPUT_ADMIN foreign key (ID_ADMIN)
-      references ADMIN (ID_ADMIN)
-      on update restrict
-      on delete restrict;
-
-alter table BILAL
-   add constraint FK_BILAL_MEMPUNYAI_ACARA foreign key (ID_ACARA)
-      references ACARA (ID_ACARA)
-      on update restrict
-      on delete restrict;
-
-alter table FOTO
-   add constraint FK_FOTO_MEMILIKI_ACARA foreign key (ID_ACARA)
-      references ACARA (ID_ACARA)
-      on update restrict
-      on delete restrict;
-
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
