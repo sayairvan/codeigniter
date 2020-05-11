@@ -26,22 +26,15 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">Main Navigation</li>
-      <li class="treeview">
-        <a href="#">
+      <li class="">
+        <a href="<?php echo base_url(); ?>dashboard">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
         </a>
-        <ul class="treeview-menu">
-          <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-          <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-        </ul>
       </li>
 
       <li class="treeview">
         <a href="<?php echo base_url(); ?>acara">
-          <i class="fa fa-dashboard"></i> <span>Acara</span>
+          <i class="fa fa-calendar-check-o "></i> <span>Acara</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -71,7 +64,7 @@
       </li>
       <li class="">
         <a href="<?php echo base_url(); ?>pesan">
-          <i class="fa fa-edit"></i> <span>Pesan</span>
+          <i class="fa fa-envelope"></i> <span>Pesan</span>
         </a>
       </li>
       <li class="treeview">

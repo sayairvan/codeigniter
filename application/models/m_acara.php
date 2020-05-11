@@ -4,8 +4,6 @@ class M_acara extends CI_Model
 
     public function tampil_data()
     {
-        // return $this->db->get('BILAL');
-
         $this->db->select('*'); //untuk menampilkan semua data kedua tabel
         $this->db->from('acara');
         $this->db->join('penceramah', 'acara.ID_PENCERAMAH = penceramah.ID_PENCERAMAH'); //join untuk menggabungkan tabel
@@ -45,8 +43,8 @@ class M_acara extends CI_Model
         $query = $this->db->get('acara');
         $output = '<option value="">Select City</option>';
         foreach ($query->result() as $row) {
-                $output .= '<option value="' . $row->NAMA_ACARA . '">' . $row->NAMA_ACARA . '</option>';
-            }
+            $output .= '<option value="' . $row->NAMA_ACARA . '">' . $row->NAMA_ACARA . '</option>';
+        }
         return $output;
     }
 
