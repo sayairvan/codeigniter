@@ -33,56 +33,25 @@
             <div class="box-body">
               <table class="table table-bordered">
                 <tr>
-                  <th style="width: 10px">No</th>
+                  <th style="width: 10px">No.</th>
                   <th>Jenis Acara</th>
                   <th>Nama Acara</th>
-                  <th>Tema Acara</th>
                   <th>Tanggal</th>
                 </tr>
-                <tr>
-                  <td>1.</td>
-                  <td>Update software</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-red">55%</span></td>
-                </tr>
-                <tr>
-                  <td>2.</td>
-                  <td>Clean database</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-yellow">70%</span></td>
-                </tr>
-                <tr>
-                  <td>3.</td>
-                  <td>Cron job running</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-light-blue">30%</span></td>
-                </tr>
-                <tr>
-                  <td>4.</td>
-                  <td>Fix and squish bugs</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-green">90%</span></td>
-                </tr>
+                <?php
+                $no = 1;
+                foreach ($dashboard as $acr) : ?>
+                  <tr>
+                    <td><?php echo $no++ ?></td>
+                    <td><?php echo $acr->JENIS_ACARA ?></td>
+                    <td><?php echo $acr->NAMA_ACARA ?></td>
+                    <td><?php echo $acr->TGL_ACARA ?></td>
+                  </tr>
+                <?php endforeach ?>
               </table>
             </div>
             <!-- /.box-body -->
-            
+
           </div>
         </div>
         <!-- /.box -->
@@ -129,13 +98,13 @@
       </div>
       <!--/.col (left) -->
       <!-- right column -->
-      
+
       <div class="col-md-6">
         <div class="box box-warning">
           <div class="box-body no-padding">
             <!-- THE CALENDAR -->
             <div id="calendar1"></div>
-            
+
           </div>
           <!-- /.box-body -->
         </div>

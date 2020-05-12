@@ -52,37 +52,35 @@
       },
       //Random default events
       events    : [
-        "; 
-        foreach ($dashboard as $das) {
-            $warnaBackground;
-            $warnaBorder;
-            if($das->JENIS_ACARA=='Jumatan'){
-                $warnaBackground='#f56954';
-                $warnaBorder='#f56954';
-            } else if ($das->JENIS_ACARA=='Kajian'){
-                $warnaBackground='#00a65a';
-                $warnaBorder='#00a65a';
-            } else {
-                $warnaBackground='#00c0ef';
-                $warnaBorder='#00c0ef';
-            }
-            echo "{
-                title          : '". $das->JENIS_ACARA ."',
-                start          : '".$das->TGL_ACARA."',
-                backgroundColor: '".$warnaBackground."', 
-                borderColor    : '".$warnaBorder."' 
+        ";
+            foreach ($dashboard as $das) {
+                $warnaBackground;
+                $warnaBorder;
+                if ($das->JENIS_ACARA == 'Jumatan') {
+                    $warnaBackground = '#f56954';
+                    $warnaBorder = '#f56954';
+                } else if ($das->JENIS_ACARA == 'Kajian') {
+                    $warnaBackground = '#00a65a';
+                    $warnaBorder = '#00a65a';
+                } else {
+                    $warnaBackground = '#00c0ef';
+                    $warnaBorder = '#00c0ef';
+                }
+                echo "{
+                title          : '" . $das->JENIS_ACARA . "',
+                start          : '" . $das->TGL_ACARA . "',
+                backgroundColor: '" . $warnaBackground . "', 
+                borderColor    : '" . $warnaBorder . "' 
               },
           ";
-        }
-        echo "],";
-        ?>
+            }
+            echo "],";
+            ?>
 
             // editable  : true,
             // droppable : true, // this allows things to be dropped onto the calendar !!!
 
         })
-
-
-
+        // 
     })
 </script>

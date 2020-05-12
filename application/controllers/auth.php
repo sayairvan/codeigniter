@@ -45,7 +45,7 @@ class Auth extends CI_Controller
 
             $this->session->set_userdata($data_session);
 
-            redirect(base_url("penceramah"));
+            redirect(base_url("dashboard"));
         } else {
             // echo "Username dan password salah !";
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
