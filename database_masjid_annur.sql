@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2020 at 08:04 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Generation Time: May 17, 2020 at 12:31 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -46,18 +46,16 @@ CREATE TABLE `acara` (
 --
 
 INSERT INTO `acara` (`ID_ACARA`, `ID_ADMIN`, `ID_PENCERAMAH`, `ID_BILAL`, `JENIS_ACARA`, `NAMA_ACARA`, `TEMA_ACARA`, `TGL_ACARA`, `PAMFLET_ACARA`, `VIDEO_ACARA`) VALUES
-(2, NULL, NULL, NULL, 'Hari Besar Islam', 'Maulid Nabi', 'membangun insan', '2020-01-20', 'mamah-sum.jpg', 'mamah-sum.jpg'),
-(3, NULL, NULL, NULL, 'Kajian', 'Maulid Nabi Muhammad SAW', '', '2020-04-21', NULL, NULL),
-(4, NULL, NULL, NULL, 'Kajian', 'Coba', '', '2020-04-13', NULL, NULL),
-(5, NULL, 5, NULL, 'Kajian', 'Putri', '', '2020-04-13', NULL, NULL),
+(2, NULL, 5, NULL, 'Hari Besar Islam', 'Maulid Nabi', 'membangun insan', '2020-01-20', 'mamah-sum.jpg', ''),
+(5, NULL, 5, NULL, 'Kajian', 'KAJIAN AYATUL AHKAM', '', '2020-04-13', NULL, 'https://www.youtube.com/embed/dx1oeuctmCI'),
 (8, NULL, 6, 3, 'jumatan', 'Minggu 1', 'aaaaaaaaaa', '2020-04-13', NULL, NULL),
-(9, NULL, 6, NULL, 'Hari Besar Islam', 'Minggu 1', 'aaaaaaaaaa', '2020-04-16', NULL, NULL),
+(9, NULL, 6, NULL, 'Hari Besar Islam', 'Minggu 1', 'aaaaaaaaaa', '2019-04-16', NULL, NULL),
 (10, NULL, 6, NULL, 'Hari Besar Islam', 'idul fitri', 'fitri', '2020-04-19', NULL, NULL),
 (12, NULL, 5, NULL, 'Jumatan', 'Minggu 2', 'aaaaaaaaaa', '2020-04-20', NULL, NULL),
-(14, NULL, 6, NULL, 'Kajian', 'kajian 3', 'aaaaaaaaaa', '2020-04-29', 'icon_pc.jpg', 'icon_pc.jpg'),
+(14, NULL, 6, NULL, 'Kajian', 'KAJIAN SIROH NABAWIYAH', 'aaaaaaaaaa', '2020-04-29', 'icon_pc.jpg', 'https://www.youtube.com/embed/0gcqMHzaFNg'),
 (15, NULL, 5, NULL, 'Jumatan', 'Minggu 5', 'aku', '2020-04-29', NULL, NULL),
 (16, NULL, 6, 4, 'Jumatan', 'Minggu5', 'aaaaaaaaaa', '2020-04-30', NULL, NULL),
-(17, NULL, 11, NULL, 'Kajian', 'kajian 1', 'fitri', '2020-04-30', NULL, NULL);
+(17, NULL, 11, NULL, 'Kajian', 'KAJIAN SIROH NABAWIYAH', 'fitri', '2020-04-30', NULL, 'https://www.youtube.com/embed/1XgCMNfOHFU');
 
 -- --------------------------------------------------------
 
@@ -82,6 +80,28 @@ INSERT INTO `admin` (`ID_ADMIN`, `USERNAME`, `PASSWORD`, `NAMA_ADMIN`, `NO_TELP_
 (12, 'ardi1', '1234', 'irvand', '08994882221'),
 (13, 'admin', '$2y$10$FuLuaSDGU/XT0U/X9R56Q.wkSNIVf2U60ZoPYG4e.gA', 'dyah putri', '08994882241'),
 (14, 'dyah', '$2y$10$par92umPwzVHpygJft5Jle5xhRVueLRTvRv08kc.ei6', 'dyah putri', '08994882244');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `artikel`
+--
+
+CREATE TABLE `artikel` (
+  `ID_ARTIKEL` int(11) NOT NULL,
+  `JUDUL_ARTIKEL` varchar(255) NOT NULL,
+  `ISI_ARTIKEL` varchar(1000) NOT NULL,
+  `TGL_ARTIKEL` varchar(10) NOT NULL,
+  `FOTO_ARTIKEL` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `artikel`
+--
+
+INSERT INTO `artikel` (`ID_ARTIKEL`, `JUDUL_ARTIKEL`, `ISI_ARTIKEL`, `TGL_ARTIKEL`, `FOTO_ARTIKEL`) VALUES
+(2, 'Bebas', ' Jika sudah Edit fungsi \"edit()\" di controller \"C_buku.php\" yang berada di folder \"belajarci/application/controllers/C_buku.php\" menjadi seperti berikut.              ', '2020-05-17', 'deliv.png'),
+(3, 'sadw', '                                w2                                                ', '2020-05-18', 'an-nur1.jpg');
 
 -- --------------------------------------------------------
 
@@ -125,8 +145,20 @@ INSERT INTO `foto` (`ID_FOTO`, `ID_ACARA`, `FOTO`) VALUES
 (4, 8, 'an-nur.jpg'),
 (5, 10, 'bri.png'),
 (6, 14, 'boba.jpg'),
-(7, 2, 'mamah-sum.jpg'),
-(8, 14, 'icon_pc.jpg');
+(7, 2, 'mamah-sum.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kontak`
+--
+
+CREATE TABLE `kontak` (
+  `ID_KONTAK` int(11) NOT NULL,
+  `NAMA_USER` varchar(255) NOT NULL,
+  `EMAIL_USER` varchar(255) NOT NULL,
+  `KRITIK_SARAN_USER` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -149,6 +181,26 @@ INSERT INTO `penceramah` (`ID_PENCERAMAH`, `NAMA_PENCERAMAH`, `NO_TELP`, `ALAMAT
 (5, 'Ustd. Ahmad Baha\'udin', '085101288099', 'Perum Pond Mutiara Bonagung Blok E 3 No. 08.'),
 (6, 'H. Zainal Arifin Mafa', '082132851742', 'Jl. Jombang Gg. I No. 10-D Malang\r\n'),
 (11, 'Drs. H. Fadloli, M.Pd.I.', '081945720283', 'Griya Shanta C-205 Malang');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profile`
+--
+
+CREATE TABLE `profile` (
+  `ID_PROFILE` int(11) NOT NULL,
+  `TENTANG_KAMI` varchar(1000) NOT NULL,
+  `VISI` varchar(1000) NOT NULL,
+  `MISI` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `profile`
+--
+
+INSERT INTO `profile` (`ID_PROFILE`, `TENTANG_KAMI`, `VISI`, `MISI`) VALUES
+(1, '          rumah tempat ibadah umat Islam atau Muslim. Masjid artinya tempat sujud, dan sebutan lain bagi masjid di Indonesia adalah musala, langgar atau surau. Istilah tersebut diperuntukkan bagi masjid yang tidak digunakan untuk salat Jumat, dan umumnya berukuran kecil. \r\n\r\nSelain digunakan sebagai tempat ibadah, masjid juga merupakan pusat kehidupan komunitas muslim. Kegiatan-kegiatan perayaan hari besar, diskusi, kajian agama, ceramah dan belajar Al-Qur\'an sering dilaksanakan di Masjid. Bahkan dalam sejarah Islam, masjid turut memegang peranan dalam aktivitas sosial kemasyarakatan hingga kemiliteran.\r\n          ', '                    visi\r\n          \r\n          ', '                    misi\r\n          \r\n          ');
 
 -- --------------------------------------------------------
 
@@ -198,6 +250,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`ID_ADMIN`);
 
 --
+-- Indexes for table `artikel`
+--
+ALTER TABLE `artikel`
+  ADD PRIMARY KEY (`ID_ARTIKEL`);
+
+--
 -- Indexes for table `bilal`
 --
 ALTER TABLE `bilal`
@@ -211,10 +269,22 @@ ALTER TABLE `foto`
   ADD KEY `FK_FOTO_MEMILIKI_ACARA` (`ID_ACARA`);
 
 --
+-- Indexes for table `kontak`
+--
+ALTER TABLE `kontak`
+  ADD PRIMARY KEY (`ID_KONTAK`);
+
+--
 -- Indexes for table `penceramah`
 --
 ALTER TABLE `penceramah`
   ADD PRIMARY KEY (`ID_PENCERAMAH`);
+
+--
+-- Indexes for table `profile`
+--
+ALTER TABLE `profile`
+  ADD PRIMARY KEY (`ID_PROFILE`);
 
 --
 -- Indexes for table `template_pesan`
@@ -239,6 +309,12 @@ ALTER TABLE `admin`
   MODIFY `ID_ADMIN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `artikel`
+--
+ALTER TABLE `artikel`
+  MODIFY `ID_ARTIKEL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `bilal`
 --
 ALTER TABLE `bilal`
@@ -248,13 +324,25 @@ ALTER TABLE `bilal`
 -- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `ID_FOTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_FOTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `kontak`
+--
+ALTER TABLE `kontak`
+  MODIFY `ID_KONTAK` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `penceramah`
 --
 ALTER TABLE `penceramah`
   MODIFY `ID_PENCERAMAH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `profile`
+--
+ALTER TABLE `profile`
+  MODIFY `ID_PROFILE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `template_pesan`

@@ -86,6 +86,21 @@
           <i class="fa fa-lock"></i> <span>Ganti Password</span>
         </a>
       </li>
+      <li class="header">Setting Pengguna</li>
+      <li class="treeview">
+        <a href="<?php echo base_url(); ?>Foto">
+          <i class="fa fa-users"></i> <span>Pengguna</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <!-- dari acara view dilempar ke namafungsi/parameter di controller  -->
+          <li class=""><a href="<?php echo base_url(); ?>user/edit/artikel_admin"><i class="fa fa-circle-o"></i> Artikel</a></li>
+          <li><a href="<?php echo base_url(); ?>user/edit/profile_admin/tampil_profile"><i class="fa fa-circle-o"></i> Profile Masjid</a></li>
+          <li><a href="<?php echo base_url(); ?>user/edit/kontak_admin"><i class="fa fa-circle-o"></i> Kritik dan Saran</a></li>
+        </ul>
+      </li>
       <li class="">
         <a href="<?php echo base_url('auth/logout'); ?>" onclick="return confirm ('Apakah anda yakin ingin keluar?')">
           <i class="fa fa-sign-out"></i> <span>Logout</span>
